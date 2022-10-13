@@ -31,3 +31,14 @@ function getMovePC() {
     return randomItem;
 }
 
+function numberToName(move) {
+    if (move == "1") {
+        move = "Rock"
+    }
+    else if (move == "2") {
+        move = "Paper"
+    }
+    else if (move == "3") {
+        move = "Scissors"
+    }
+}
