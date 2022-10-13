@@ -52,11 +52,11 @@ function userVsPC() {
     user = numberToName(getMoveUser()); 
     pc = numberToName(getMovePC());
     
-    userWin = (user, pc) => console.log(`Player wins\n\nPlayer: ${user} PC: ${pc}`);
-    pcWin = (user, pc) => console.log(`PC wins\n\nPlayer: ${user} PC: ${pc}`);
+    userWin = (user, pc) => console.log(`Player wins\nPlayer: ${user} PC: ${pc}`);
+    pcWin = (user, pc) => console.log(`PC wins\nPlayer: ${user} PC: ${pc}`);
     
     if (user == pc) {
-        console.log("It's a tie") 
+        console.log(`It's a tie\nPlayer: ${user} PC: ${pc}`) 
         return "Tie";
 
     } else if (user == "Rock") {
@@ -89,6 +89,24 @@ function userVsPC() {
     }
 }
 
+
+// helper function for printing the stats when game is finished
+function notifyStats(stats) {
+    let player = stats[0];
+    let pc = stats[1];
+
+    console.log("End of game")
+
+    if (player === pc) {
+        console.log("It's a tie")
+    } else if (player > pc) {
+        console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`)
+    } else {
+        console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`)
+    }
+
+}
+
 function game() {
     let player = 0;
     let PC = 0;
@@ -108,7 +126,9 @@ function game() {
             PC++
         }
     }
+    
+    notifyStats([player, PC])
 }
 
 
-userVsPC()
+game()
