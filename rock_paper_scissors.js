@@ -3,8 +3,9 @@
 // 3. compare moves and return winner 
 // 4. let user play a game many times
 
+let moves = ["rock", "scissors", "paper", "1", "2", "3"];
+
 function getMoveUser() {
-    let moves = ["rock", "scissors", "paper", "1", "2", "3"];
     let move;
 
     while (true) {
@@ -18,5 +19,15 @@ function getMoveUser() {
            }
     }
 
+}
+
+function getMovePC() {
+    let randomNumber;
+    let randomItem;
+
+    randomNumber = Math.floor(Math.random() * moves.length);
+    randomItem = moves[randomNumber];
+
+    return randomItem;
 }
 
