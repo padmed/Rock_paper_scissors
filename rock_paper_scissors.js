@@ -47,35 +47,68 @@ function numberToName(move) {
 }
 
 function userVsPC() {
-    let user, pc;
+    let user, pc, userWin, pcWin;
 
     user = numberToName(getMoveUser()); 
     pc = numberToName(getMovePC());
     
-    if (user == pc) { 
+    userWin = (user, pc) => console.log(`Player wins\n\nPlayer: ${user} PC: ${pc}`);
+    pcWin = (user, pc) => console.log(`PC wins\n\nPlayer: ${user} PC: ${pc}`);
+    
+    if (user == pc) {
+        console.log("It's a tie") 
         return "Tie";
 
     } else if (user == "Rock") {
         if (pc == "Scissors") {
+            userWin(user, pc)
             return "Player";
         } else if (pc == "Paper") {
+            pcWin(user, pc)
             return "PC";
         }
 
     } else if (user == "Paper") {
         if (pc == "Rock") {
+            userWin(user, pc)
             return "Player";
         } else if (pc == "Scissors") {
+            pcWin(user, pc)
             return "PC";
         }
 
     } else if (user == "Scissors") {
         if (pc == "Rock") {
+            pcWin(user, pc)
             return "PC";
         }
         else if (pc == "Paper") {
+            userWin(user, pc)
             return "Player";
         }
     }
 }
 
+function game() {
+    let player = 0;
+    let PC = 0;
+
+
+    for (let counter = 0; counter <= 5; counter++) {
+        let gameResult = userVsPC();
+
+        if (gameResult == "Tie") {
+            player++
+            PC++
+
+        } else if (gameResult == "Player") {
+            player++
+
+        } else {
+            PC++
+        }
+    }
+}
+
+
+userVsPC()
