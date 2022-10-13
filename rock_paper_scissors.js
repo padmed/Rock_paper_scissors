@@ -5,12 +5,14 @@
 
 let moves = ["rock", "scissors", "paper", "1", "2", "3"];
 
+// gets move from user, if the input is incorrect program asks user for another input
 function getMoveUser() {
     let move;
 
     while (true) {
         move = prompt("What's your move? (Enter number or name)\n\nRock(1) or Paper(2) or Scissor(3)\n").toLowerCase();
 
+        //check if inputed value is in aviavle moves
         if (moves.includes(move)) {
             return move;
         }
@@ -20,7 +22,7 @@ function getMoveUser() {
     }
 }
 
-
+//gets random move by help of math object
 function getMovePC() {
     let randomNumber;
     let randomItem;
@@ -31,7 +33,7 @@ function getMovePC() {
     return randomItem;
 }
 
-//converts digits (id of items) to their names || returns string with capitalized firts character
+//converts digits (id of items) to their names || modifies string with capitalized firts character
 function numberToName(move) {
     if (move == "1" || move == "rock") {
         move = "Rock";
@@ -46,13 +48,14 @@ function numberToName(move) {
     return move;
 }
 
+// compares user  and pc moves... prints who won the game after the round
 function userVsPC() {
     let user, pc, userWin, pcWin;
 
     user = numberToName(getMoveUser()); 
     pc = numberToName(getMovePC());
     
-    userWin = (user, pc) => console.log(`Player wins\nPlayer: ${user} PC: ${pc}`);
+    userWin = (user, pc) => console.log(`Player wins\nPlayer: ${user} PC: ${pc}`); //functions for printing the round winner
     pcWin = (user, pc) => console.log(`PC wins\nPlayer: ${user} PC: ${pc}`);
     
     if (user == pc) {
@@ -61,29 +64,29 @@ function userVsPC() {
 
     } else if (user == "Rock") {
         if (pc == "Scissors") {
-            userWin(user, pc)
+            userWin(user, pc);
             return "Player";
         } else if (pc == "Paper") {
-            pcWin(user, pc)
+            pcWin(user, pc);
             return "PC";
         }
 
     } else if (user == "Paper") {
         if (pc == "Rock") {
-            userWin(user, pc)
+            userWin(user, pc);
             return "Player";
         } else if (pc == "Scissors") {
-            pcWin(user, pc)
+            pcWin(user, pc);
             return "PC";
         }
 
     } else if (user == "Scissors") {
         if (pc == "Rock") {
-            pcWin(user, pc)
+            pcWin(user, pc);
             return "PC";
         }
         else if (pc == "Paper") {
-            userWin(user, pc)
+            userWin(user, pc);
             return "Player";
         }
     }
@@ -95,39 +98,39 @@ function notifyStats(stats) {
     let player = stats[0];
     let pc = stats[1];
 
-    console.log("End of game")
+    console.log("End of game");
 
     if (player === pc) {
-        console.log("It's a tie")
+        console.log("It's a tie");
     } else if (player > pc) {
-        console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`)
+        console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`);
     } else {
-        console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`)
+        console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`);
     }
 
 }
 
+//main function 
 function game() {
     let player = 0;
     let PC = 0;
 
 
-    for (let counter = 0; counter <= 5; counter++) {
+    for (let counter = 0; counter < 5; counter++) {
         let gameResult = userVsPC();
 
         if (gameResult == "Tie") {
-            player++
-            PC++
+            continue;
 
         } else if (gameResult == "Player") {
-            player++
+            player++;
 
         } else {
-            PC++
+            PC++;
         }
     }
     
-    notifyStats([player, PC])
+    notifyStats([player, PC]);
 }
 
 
