@@ -33,12 +33,18 @@ function getMovePC() {
 
 function numberToName(move) {
     if (move == "1") {
-        move = "Rock"
+        move = "Rock";
     }
     else if (move == "2") {
-        move = "Paper"
+        move = "Paper";
     }
     else if (move == "3") {
-        move = "Scissors"
+        move = "Scissors";
     }
+
+    return move;
 }
+
+
+user = prompt("miau")
+console.log(numberToName(user))
