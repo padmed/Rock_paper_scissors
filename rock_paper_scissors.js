@@ -14,12 +14,12 @@ function getMoveUser() {
         if (moves.includes(move)) {
             return move;
         }
-           else {
+        else {
             alert("Please enter proper value!")
-           }
+        }
     }
-
 }
+
 
 function getMovePC() {
     let randomNumber;
@@ -31,20 +31,51 @@ function getMovePC() {
     return randomItem;
 }
 
+//converts digits (id of items) to their names || returns string with capitalized firts character
 function numberToName(move) {
-    if (move == "1") {
+    if (move == "1" || move == "rock") {
         move = "Rock";
     }
-    else if (move == "2") {
+    else if (move == "2" || move == "paper") {
         move = "Paper";
     }
-    else if (move == "3") {
+    else if (move == "3" || move == "scissors") {
         move = "Scissors";
     }
 
     return move;
 }
 
+function userVsPC() {
+    let user, pc;
 
-user = prompt("miau")
-console.log(numberToName(user))
+    user = numberToName(getMoveUser()); 
+    pc = numberToName(getMovePC());
+    
+    if (user == pc) { 
+        return "Tie";
+
+    } else if (user == "Rock") {
+        if (pc == "Scissors") {
+            return "Player";
+        } else if (pc == "Paper") {
+            return "PC";
+        }
+
+    } else if (user == "Paper") {
+        if (pc == "Rock") {
+            return "Player";
+        } else if (pc == "Scissors") {
+            return "PC";
+        }
+
+    } else if (user == "Scissors") {
+        if (pc == "Rock") {
+            return "PC";
+        }
+        else if (pc == "Paper") {
+            return "Player";
+        }
+    }
+}
+
