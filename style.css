@@ -1,0 +1,16 @@
+body {
+    margin: 0px;
+}
+
+#header {
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    height: 10vh;
+}
+
+h1 {
+    border: 1px solid;
+    margin: 0px;
+    align-self: center;
+}
