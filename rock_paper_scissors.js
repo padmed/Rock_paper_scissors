@@ -94,44 +94,44 @@ function userVsPC() {
 
 
 // helper function for printing the stats when game is finished
-function notifyStats(stats) {
-    let player = stats[0];
-    let pc = stats[1];
+// function notifyStats(stats) {
+//     let player = stats[0];
+//     let pc = stats[1];
 
-    console.log("End of game");
+//     console.log("End of game");
 
-    if (player === pc) {
-        console.log("It's a tie");
-    } else if (player > pc) {
-        console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`);
-    } else {
-        console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`);
-    }
+//     if (player === pc) {
+//         console.log("It's a tie");
+//     } else if (player > pc) {
+//         console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`);
+//     } else {
+//         console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`);
+//     }
 
-}
+// }
 
-//main function 
-function game() {
-    let player = 0;
-    let PC = 0;
+// //main function 
+// function game() {
+//     let player = 0;
+//     let PC = 0;
 
 
-    for (let counter = 0; counter < 5; counter++) {
-        let gameResult = userVsPC();
+//     for (let counter = 0; counter < 5; counter++) {
+//         let gameResult = userVsPC();
 
-        if (gameResult == "Tie") {
-            continue;
+//         if (gameResult == "Tie") {
+//             continue;
 
-        } else if (gameResult == "Player") {
-            player++;
+//         } else if (gameResult == "Player") {
+//             player++;
 
-        } else {
-            PC++;
-        }
-    }
+//         } else {
+//             PC++;
+//         }
+//     }
     
-    notifyStats([player, PC]);
-}
+//     notifyStats([player, PC]);
+// }
 
 
-game()
+userVsPC()
