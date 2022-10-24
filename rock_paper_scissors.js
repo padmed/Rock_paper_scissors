@@ -13,9 +13,14 @@
 //starts and restarts the game, calls main function
 function game() {
     const roundButton = document.querySelector('#start-button');
+    const notifyText = document.querySelector('#notify');
     roundButton.textContent = 'Press to begin';
+
     roundButton.onclick = function () {
         roundButton.textContent = 'Restart game';
+        notifyText.textContent = 'Choose a card';
+
+        moves = [];
         removeColors();
         getMoveUser(); 
     }
@@ -42,55 +47,61 @@ function playRound(event) {
 
 //gets random move with help of math object, return html element (matches element.id with random item)
 function getMovePC() {
-    let randomNumber;
-    let randomItem;
     const moves = ["Rock", "Scissors", "Paper"];
+    const randomNumber = Math.floor(Math.random() * moves.length);
 
-    randomNumber = Math.floor(Math.random() * moves.length);
-    randomItem = moves[randomNumber];
-
+    const randomItem = moves[randomNumber];
     const pcMove = document.querySelector(`#${randomItem}`)
 
     return pcMove;
 }
 
+let moves = [];
 // compares user  and pc moves... prints who won the game after the round
 function userVsPC(user, pc) {
-    let  userWin, pcWin;
+    const notifyText = document.querySelector('#notify');
+
+    const userWin = (user, pc) => notifyText.textContent = `You win the round (Rounds ${moves.length}/5)`; //functions for printing the round winner
+    const pcWin = (user, pc) => notifyText.textContent = `Opponent wins the round (Rounds ${moves.length}/5)`;
     
-    userWin = (user, pc) => console.log(`Player wins\nPlayer: ${user} PC: ${pc}`); //functions for printing the round winner
-    pcWin = (user, pc) => console.log(`PC wins\nPlayer: ${user} PC: ${pc}`);
-    
+    if (moves.length === 5) {
+        notifyWinner();
+        return;
+    }
+
     if (user == pc) {
-        console.log(`It's a tie\nPlayer: ${user} PC: ${pc}`) 
+        moves.push('Tie');
+        notifyText.textContent = `It's a tie (Rounds ${moves.length}/5)`;
         return "Tie";
 
     } else if (user == "Rock") {
         if (pc == "Scissors") {
+            moves.push("Player");
             userWin(user, pc);
-            return "Player";
+
         } else if (pc == "Paper") {
+            moves.push("PC")
             pcWin(user, pc);
-            return "PC";
         }
 
     } else if (user == "Paper") {
         if (pc == "Rock") {
+            moves.push("Player");
             userWin(user, pc);
-            return "Player";
+
         } else if (pc == "Scissors") {
+            moves.push("PC")
             pcWin(user, pc);
-            return "PC";
         }
 
     } else if (user == "Scissors") {
         if (pc == "Rock") {
+            moves.push("PC");
             pcWin(user, pc);
-            return "PC";
         }
         else if (pc == "Paper") {
+            moves.push("Player")
             userWin(user, pc);
-            return "Player";
         }
     }
 }
@@ -125,6 +136,27 @@ function colorCards(cards) {
         userCard.classList.add('green');
         pcCard.classList.add('blue')
     }
+}
+
+function notifyWinner() {
+    let pc = 0, user = 0;
+    const notifyText = document.querySelector('#notify')
+
+    for (let i = 0; i < moves.length; i++) {
+        if (moves[i] == "PC") {
+            pc++;
+        } else if (moves[i] == "Player") {
+            user++;
+        }
+    }
+
+    if (pc > user) {
+        notifyText.textContent = 'Opponent Won The Game';
+    } else if (pc < user ) {
+        notifyText.textContent = 'You Won The Game';
+    } else {
+        notifyText.textContent = 'It\'s a Tie';
+    } console.log(pc, user, moves)
 }
 
 
