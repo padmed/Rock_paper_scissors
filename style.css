@@ -1,16 +1,17 @@
 body {
     margin: 0px;
     font-family: 'Josefin Sans', sans-serif;
-    color: #2b2d29;
+    color: #eeeeee;
+    font-size: 18px;
 }
 
 /* header properties  */
 #header {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #222831;
     display: flex;
     justify-content: center;
     height: 8vh;
-    background-color: #ffbd33;
+    background-color: #2d4059; ;
 }
 
 h1 {
@@ -21,7 +22,7 @@ h1 {
 
 /* center properties */
 #center {
-    background-color: #dbff33;
+    background-color: #eeeeee;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -30,7 +31,9 @@ h1 {
 
 h2 {
     margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-bottom: 10vh;
+    color: #2d4059;
+    font-size: 30px;
 }
 
 .moves {
@@ -49,25 +52,38 @@ img {
     padding: 2vh;
     justify-content: center;
     align-items: center;
-    border: 5px solid #2b2d29;
+    border: 5px solid #222831;
     border-radius: 15px;
     height: 23vh;
+    background-color: #ff5722;
 }
 
 
 .button:hover{
-    box-shadow: 10px 10px 8px #43760d;
+    box-shadow: 15px 10px 8px #ff5722;
     transform: scale(1.1);
 }
 
 .green {
-    background-color: #0f760d
+    background-color: #0f760d;
 }
 
 .blue {
     background-color: #0d0e76;
 }
 
-.brown {
-    background-color: brown;
+.grey {
+    background-color: #2d4059;
+}
+
+.green:hover {
+    box-shadow: 10px 10px 8px #0f760d;
+}
+
+.blue:hover {
+    box-shadow: 10px 10px 8px #0d0e76;
+}
+
+.grey:hover {
+    box-shadow: 10px 10px 8px #2d4059;
 }

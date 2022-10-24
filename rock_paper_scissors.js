@@ -17,6 +17,18 @@ function getMoveUser() {
     moves.forEach((div) => div.addEventListener('click', game))
 }
 
+
+function game(event) {
+    const userMove = this.id;
+    const userCard = this;
+    const pcCard = getMovePC();
+    
+    removeColors();
+    colorCards([userCard, pcCard]);
+    userVsPC(userMove, pcCard.id);
+}
+
+
 //gets random move with help of math object
 function getMovePC() {
     let randomNumber;
@@ -30,7 +42,6 @@ function getMovePC() {
 
     return pcMove;
 }
-
 
 // compares user  and pc moves... prints who won the game after the round
 function userVsPC(user, pc) {
@@ -80,8 +91,8 @@ function removeColors() {
         const card = cards[i];
         
         for (let j = 0; j < card.classList.length; j++) {
-            if (card.classList[j] === 'brown') {
-                card.classList.remove('brown');
+            if (card.classList[j] === 'grey') {
+                card.classList.remove('grey');
             } else if (card.classList[j] === 'green') {
                 card.classList.remove('green')                
             } else if (card.classList[j] === 'blue') {
@@ -96,22 +107,11 @@ function colorCards(cards) {
     const pcCard = cards[1];
 
     if (userCard.id === pcCard.id) {
-        pcCard.classList.add('brown');
+        pcCard.classList.add('grey');
     } else {
         userCard.classList.add('green');
         pcCard.classList.add('blue')
     }
-}
-
-
-function game(event) {
-    const userMove = this.id;
-    const userCard = this;
-    const pcCard = getMovePC();
-    
-    removeColors();
-    colorCards([userCard, pcCard]);
-    userVsPC(userMove, pcCard.id);
 }
 
 
