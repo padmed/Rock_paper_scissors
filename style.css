@@ -46,7 +46,7 @@ img {
     height: 15vh;
 }
 
-.button {
+.card {
     display: flex;
     flex-direction: column;
     padding: 2vh;
@@ -59,7 +59,7 @@ img {
 }
 
 
-.button:hover{
+.card:hover{
     box-shadow: 15px 10px 8px #ff5722;
     transform: scale(1.1);
 }
@@ -86,4 +86,32 @@ img {
 
 .grey:hover {
     box-shadow: 10px 10px 8px #2d4059;
+}
+/* ################################# */
+
+
+/* buttons */
+.buttons {
+    margin-top: 10vh;
+    width: 57vh;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    height: 5vh;
+    width: 19vh;
+    border-radius: 5px;
+    border: 3px solid #222831;
+    background-color: #2d4059;
+    color: #eeeeee;
+    font-size: 20px;
+    box-shadow: 3px 3px 3px #2d4059;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+.button:active {
+    transform: scale(0.95);
 }
