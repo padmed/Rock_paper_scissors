@@ -1,31 +1,27 @@
-// 1. get move from user 
-// 2. get move from pc 
-// 3. compare moves and return winner 
-// 4. let user play a game many times
+// 1. get move from user
+    // 1. get move elements with id
+    // 2. listen on clicks
+    // 3. highlight selected move
+    // 4. return move
+// 2. get move from pc
+    // 1. highlight pc move
+// 3. compare pc and user moves, return winner
+// 4. print out the winner of the round
+    // 1. Add html container to display results
 
-let moves = ["rock", "scissors", "paper", "1", "2", "3"];
 
-// gets move from user, if the input is incorrect program asks user for another input
+
+
 function getMoveUser() {
-    let move;
-
-    while (true) {
-        move = prompt("What's your move? (Enter number or name)\n\nRock(1) or Paper(2) or Scissor(3)\n").toLowerCase();
-
-        //check if inputed value is in aviavle moves
-        if (moves.includes(move)) {
-            return move;
-        }
-        else {
-            alert("Please enter proper value!")
-        }
-    }
+    let moves = document.querySelectorAll('.button');
+    moves.forEach((div) => div.addEventListener('click', game))
 }
 
-//gets random move by help of math object
+//gets random move with help of math object
 function getMovePC() {
     let randomNumber;
     let randomItem;
+    const moves = ["Rock", "Scissors", "Paper"];
 
     randomNumber = Math.floor(Math.random() * moves.length);
     randomItem = moves[randomNumber];
@@ -33,27 +29,10 @@ function getMovePC() {
     return randomItem;
 }
 
-//converts digits (id of items) to their names || modifies string with capitalized firts character
-function numberToName(move) {
-    if (move == "1" || move == "rock") {
-        move = "Rock";
-    }
-    else if (move == "2" || move == "paper") {
-        move = "Paper";
-    }
-    else if (move == "3" || move == "scissors") {
-        move = "Scissors";
-    }
-
-    return move;
-}
 
 // compares user  and pc moves... prints who won the game after the round
-function userVsPC() {
-    let user, pc, userWin, pcWin;
-
-    user = numberToName(getMoveUser()); 
-    pc = numberToName(getMovePC());
+function userVsPC(user, pc) {
+    let  userWin, pcWin;
     
     userWin = (user, pc) => console.log(`Player wins\nPlayer: ${user} PC: ${pc}`); //functions for printing the round winner
     pcWin = (user, pc) => console.log(`PC wins\nPlayer: ${user} PC: ${pc}`);
@@ -92,6 +71,15 @@ function userVsPC() {
     }
 }
 
+function game(event) {
+    const userMove = this.id;
+    const pcMove = getMovePC();
+    
+    this.style.backgroundColor ='green';
+
+
+    userVsPC(userMove, pcMove);
+}
 
 // helper function for printing the stats when game is finished
 // function notifyStats(stats) {
@@ -134,4 +122,4 @@ function userVsPC() {
 // }
 
 
-userVsPC()
+getMoveUser()
