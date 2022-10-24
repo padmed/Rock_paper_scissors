@@ -10,34 +10,37 @@
     // 1. Add html container to display results
 // 5. listen to button
 
+//starts and restarts the game, calls main function
 function game() {
     const roundButton = document.querySelector('#start-button');
     roundButton.textContent = 'Press to begin';
     roundButton.onclick = function () {
         roundButton.textContent = 'Restart game';
         removeColors();
-        getMoveUser();
+        getMoveUser(); 
     }
 }
 
+// captures user click on cards, and activates playRound function
 function getMoveUser() {
     let moves = document.querySelectorAll('.card');
     moves.forEach((div) => div.addEventListener('click', playRound))
 }
 
-
+//gets moves, removes the colors before each round, then colors them again, calls function for checking winner
 function playRound(event) {
     const userMove = this.id;
     const userCard = this;
     const pcCard = getMovePC();
+    const pcMove = pcCard.id;
     
     removeColors();
     colorCards([userCard, pcCard]);
-    userVsPC(userMove, pcCard.id);
+    userVsPC(userMove, pcMove); //function for checking winner
 }
 
 
-//gets random move with help of math object
+//gets random move with help of math object, return html element (matches element.id with random item)
 function getMovePC() {
     let randomNumber;
     let randomItem;
@@ -92,6 +95,7 @@ function userVsPC(user, pc) {
     }
 }
 
+//heper function - deletes all added color classes, restarts card colors 
 function removeColors() {
     const cards = document.querySelectorAll('.card');
     
@@ -110,6 +114,7 @@ function removeColors() {
     }
 }
 
+//helper function - colors the cards 
 function colorCards(cards) {
     const userCard = cards[0];
     const pcCard = cards[1];
