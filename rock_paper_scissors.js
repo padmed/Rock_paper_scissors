@@ -8,17 +8,25 @@
 // 3. compare pc and user moves, return winner
 // 4. print out the winner of the round
     // 1. Add html container to display results
+// 5. listen to button
 
-
-
+function game() {
+    const roundButton = document.querySelector('#start-button');
+    roundButton.textContent = 'Press to begin';
+    roundButton.onclick = function () {
+        roundButton.textContent = 'Restart game';
+        removeColors();
+        getMoveUser();
+    }
+}
 
 function getMoveUser() {
-    let moves = document.querySelectorAll('.button');
-    moves.forEach((div) => div.addEventListener('click', game))
+    let moves = document.querySelectorAll('.card');
+    moves.forEach((div) => div.addEventListener('click', playRound))
 }
 
 
-function game(event) {
+function playRound(event) {
     const userMove = this.id;
     const userCard = this;
     const pcCard = getMovePC();
@@ -85,7 +93,7 @@ function userVsPC(user, pc) {
 }
 
 function removeColors() {
-    const cards = document.querySelectorAll('.button');
+    const cards = document.querySelectorAll('.card');
     
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
@@ -115,4 +123,4 @@ function colorCards(cards) {
 }
 
 
-getMoveUser()
+game()
