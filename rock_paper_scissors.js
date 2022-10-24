@@ -26,7 +26,9 @@ function getMovePC() {
     randomNumber = Math.floor(Math.random() * moves.length);
     randomItem = moves[randomNumber];
 
-    return randomItem;
+    const pcMove = document.querySelector(`#${randomItem}`)
+
+    return pcMove;
 }
 
 
@@ -71,55 +73,47 @@ function userVsPC(user, pc) {
     }
 }
 
-function game(event) {
-    const userMove = this.id;
-    const pcMove = getMovePC();
+function removeColors() {
+    const cards = document.querySelectorAll('.button');
     
-    this.style.backgroundColor ='green';
-
-
-    userVsPC(userMove, pcMove);
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        
+        for (let j = 0; j < card.classList.length; j++) {
+            if (card.classList[j] === 'brown') {
+                card.classList.remove('brown');
+            } else if (card.classList[j] === 'green') {
+                card.classList.remove('green')                
+            } else if (card.classList[j] === 'red') {
+                card.classList.remove('red')
+            }
+        }
+    }
 }
 
-// helper function for printing the stats when game is finished
-// function notifyStats(stats) {
-//     let player = stats[0];
-//     let pc = stats[1];
+function colorCards(cards) {
+    const userCard = cards[0];
+    const pcCard = cards[1];
 
-//     console.log("End of game");
-
-//     if (player === pc) {
-//         console.log("It's a tie");
-//     } else if (player > pc) {
-//         console.log(`Player won the game! \nPlayer: ${player} PC: ${pc}`);
-//     } else {
-//         console.log(`PC won the game! \nPlayer: ${player} PC: ${pc}`);
-//     }
-
-// }
-
-// //main function 
-// function game() {
-//     let player = 0;
-//     let PC = 0;
+    if (userCard.id === pcCard.id) {
+        pcCard.classList.add('brown');
+    } else {
+        userCard.classList.add('green');
+        pcCard.classList.add('red')
+    }
+}
 
 
-//     for (let counter = 0; counter < 5; counter++) {
-//         let gameResult = userVsPC();
-
-//         if (gameResult == "Tie") {
-//             continue;
-
-//         } else if (gameResult == "Player") {
-//             player++;
-
-//         } else {
-//             PC++;
-//         }
-//     }
+function game(event) {
+    const userMove = this.id;
+    const userCard = this;
+    const pcCard = getMovePC();
     
-//     notifyStats([player, PC]);
-// }
+    removeColors();
+    colorCards([userCard, pcCard]);
+    userVsPC(userMove, pcCard.id);
+    console.log(userCard.classList)
+}
 
 
 getMoveUser()

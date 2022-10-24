@@ -35,7 +35,7 @@ h2 {
 
 .moves {
     display: flex;
-    gap: 20vh;
+    gap: 17vh;
 }
 
 img {
@@ -58,4 +58,16 @@ img {
 .button:hover{
     box-shadow: 10px 10px 8px #43760d;
     transform: scale(1.1);
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.brown {
+    background-color: brown;
 }
