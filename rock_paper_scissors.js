@@ -84,8 +84,8 @@ function removeColors() {
                 card.classList.remove('brown');
             } else if (card.classList[j] === 'green') {
                 card.classList.remove('green')                
-            } else if (card.classList[j] === 'red') {
-                card.classList.remove('red')
+            } else if (card.classList[j] === 'blue') {
+                card.classList.remove('blue')
             }
         }
     }
@@ -99,7 +99,7 @@ function colorCards(cards) {
         pcCard.classList.add('brown');
     } else {
         userCard.classList.add('green');
-        pcCard.classList.add('red')
+        pcCard.classList.add('blue')
     }
 }
 
@@ -112,7 +112,6 @@ function game(event) {
     removeColors();
     colorCards([userCard, pcCard]);
     userVsPC(userMove, pcCard.id);
-    console.log(userCard.classList)
 }
 
 
