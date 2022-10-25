@@ -66,6 +66,7 @@ function userVsPC(user, pc) {
     
     if (moves.length === 5) {
         notifyWinner();
+        removeColors();
         return;
     }
 
@@ -120,6 +121,8 @@ function removeColors() {
                 card.classList.remove('green')                
             } else if (card.classList[j] === 'blue') {
                 card.classList.remove('blue')
+            } else if (card.classList[j] === 'white') {
+                card.classList.remove('white')
             }
         }
     }
@@ -129,12 +132,23 @@ function removeColors() {
 function colorCards(cards) {
     const userCard = cards[0];
     const pcCard = cards[1];
+    const card = document.querySelectorAll('.card')
 
     if (userCard.id === pcCard.id) {
         pcCard.classList.add('grey');
     } else {
         userCard.classList.add('green');
         pcCard.classList.add('blue')
+    }
+
+    for (let i = 0; i < card.length; i++) {
+        cardToCheck = card[i];
+
+        if (!(cardToCheck.classList.contains('blue') || cardToCheck.classList.contains('grey') 
+        || cardToCheck.classList.contains('green'))) {
+
+            cardToCheck.classList.add('white')
+        }
     }
 }
 
@@ -151,12 +165,12 @@ function notifyWinner() {
     }
 
     if (pc > user) {
-        notifyText.textContent = 'Opponent Won The Game';
+        notifyText.textContent = `Opponent Won The Game!`;
     } else if (pc < user ) {
-        notifyText.textContent = 'You Won The Game';
+        notifyText.textContent = 'You Won The Game!';
     } else {
         notifyText.textContent = 'It\'s a Tie';
-    } console.log(pc, user, moves)
+    } 
 }
 
 
