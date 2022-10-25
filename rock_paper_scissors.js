@@ -21,6 +21,7 @@ function game() {
         notifyText.textContent = 'Choose a card';
 
         moves = [];
+        notifyScores();
         removeColors();
         getMoveUser(); 
     }
@@ -42,6 +43,7 @@ function playRound(event) {
     removeColors();
     colorCards([userCard, pcCard]);
     userVsPC(userMove, pcMove); //function for checking winner
+    notifyScores();
 }
 
 
@@ -73,7 +75,6 @@ function userVsPC(user, pc) {
     if (user == pc) {
         moves.push('Tie');
         notifyText.textContent = `It's a tie (Rounds ${moves.length}/5)`;
-        return "Tie";
 
     } else if (user == "Rock") {
         if (pc == "Scissors") {
@@ -152,9 +153,8 @@ function colorCards(cards) {
     }
 }
 
-function notifyWinner() {
+function countScores() {
     let pc = 0, user = 0;
-    const notifyText = document.querySelector('#notify')
 
     for (let i = 0; i < moves.length; i++) {
         if (moves[i] == "PC") {
@@ -163,15 +163,33 @@ function notifyWinner() {
             user++;
         }
     }
+    return [pc, user];
+}
 
+function notifyWinner() {
+    const scores = countScores();
+    const pc = scores[0];
+    const user = scores[1];
+    const notifyText = document.querySelector('#notify')
+
+    
     if (pc > user) {
         notifyText.textContent = `Opponent Won The Game!`;
     } else if (pc < user ) {
         notifyText.textContent = 'You Won The Game!';
     } else {
-        notifyText.textContent = 'It\'s a Tie';
+        notifyText.textContent = 'It\'s a Tie, No One Won';
     } 
 }
 
+function notifyScores() {
+    const scoreText = document.querySelector('#score');
+    let scores = countScores();
+    let pc = scores[0];
+    let user = scores[1];
+
+    scoreText.textContent = `Player Score: ${user} Opponent Score: ${pc}`;
+
+}
 
 game()
