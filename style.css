@@ -116,7 +116,7 @@ img {
 
 .button {
     height: 5vh;
-    width: 19vh;
+    max-width: 30vh;
     border-radius: 5px;
     border: 3px solid #222831;
     background-color: #2d4059;
