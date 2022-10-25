@@ -30,9 +30,16 @@ h1 {
 }
 
 h2 {
-    margin-top: 5vh;
-    margin-bottom: 10vh;
+    margin-top: 7vh;
+    margin-bottom: 3vh;
     color: #2d4059;
+    font-size: 40px;
+
+}
+
+p {
+    color: #2d4059;
+    margin-bottom: 12vh;
     font-size: 30px;
 }
 
@@ -76,6 +83,10 @@ img {
     background-color: #2d4059;
 }
 
+.white {
+    background-color: #eeeeee;
+}
+
 .green:hover {
     box-shadow: 10px 10px 8px #0f760d;
 }
@@ -87,6 +98,11 @@ img {
 .grey:hover {
     box-shadow: 10px 10px 8px #2d4059;
 }
+
+.white:hover {
+    box-shadow: 10px 10px 8px #eeeeee;
+}
+
 /* ################################# */
 
 
